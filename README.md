@@ -16,16 +16,21 @@ number formatting that must output Western digits must pass an explicit
         `-- references/
             |-- coding-standards.md
             `-- review-checklist.md
+docs/
+|-- claude-code.md
+`-- codex.md
 ```
 
 ## Usage
 
-In Cursor, add this GitHub repository as a remote project rule/skill source.
-Cursor will discover `.cursor/skills/code-standards/SKILL.md` and make the
-skill available to Agent when the Java Locale rule is relevant.
+- Cursor: add this GitHub repository as a remote project rule/skill source.
+  Cursor will discover `.cursor/skills/code-standards/SKILL.md` and make the
+  skill available to Agent when the Java Locale rule is relevant.
+- Claude Code: see `docs/claude-code.md`.
+- Codex: see `docs/codex.md`.
 
-You can also copy the `code-standards` folder into another repository under
-`.cursor/skills/` or `.agents/skills/`.
+You can also copy the `code-standards` folder into another repository under the
+skill directory supported by your agent.
 
 ## Maintenance
 
