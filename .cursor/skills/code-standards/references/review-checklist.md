@@ -16,6 +16,8 @@ Use this checklist before delivering or reviewing code changes.
 - Control flow is readable and avoids unnecessary cleverness.
 - Shared logic is tested and placed in the right ownership boundary.
 - New abstractions have a clear reason to exist.
+- Java string case conversion and Western-digit number formatting use explicit
+  `Locale.ROOT` or `Locale.ENGLISH` instead of the default locale.
 - Dead code, debug logging, and temporary scaffolding are removed.
 
 ## Reliability

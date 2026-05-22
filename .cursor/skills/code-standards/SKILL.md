@@ -41,6 +41,8 @@ consistent.
 - Functions and modules should have one clear responsibility.
 - Error paths should be intentional and observable where appropriate.
 - Inputs that cross trust boundaries should be validated or normalized.
+- Locale-sensitive operations should pass an explicit locale when output must be
+  stable across user or server regional settings.
 - Security-sensitive data must not be logged, committed, or exposed in errors.
 - New dependencies should be justified by clear value and added through the
   repository's package manager.
