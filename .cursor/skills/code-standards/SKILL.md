@@ -1,57 +1,42 @@
 ---
 name: code-standards
-description: Provides repository-agnostic code standards for implementation, review, testing, and delivery. Use when writing, modifying, refactoring, or reviewing code to keep changes simple, secure, maintainable, and consistent with the existing codebase.
+description: Enforces the Java Locale rule for string case conversion and Western-digit number formatting. Use when writing or reviewing Java code that calls String.toLowerCase, String.toUpperCase, String.format, Formatter, NumberFormat, or DecimalFormatSymbols.
 ---
 
 # Code Standards
 
-Use this skill when a task involves code changes, code review, refactoring,
-tests, build configuration, or delivery readiness. Apply the repository's local
-patterns first, then use these standards to fill gaps and keep quality
-consistent.
+This skill currently contains only the Java Locale rule requested by the
+repository owner. Do not infer or add unrelated coding standards.
 
-## Operating Principles
+## Java Locale Rule
 
-- Understand the existing structure, naming, framework choices, and helper APIs
-  before editing.
-- Keep changes scoped to the user's request and the affected ownership boundary.
-- Prefer simple, explicit code over clever abstractions.
-- Preserve shipped public interfaces and persisted data formats unless the task
-  explicitly asks for a breaking change.
-- Treat tests, linters, type checks, and build scripts as part of the change,
-  not as optional cleanup.
-- Surface uncertainty with concrete risks, affected files, and verification
-  gaps.
+- In Java, calls to `String#toLowerCase` and `String#toUpperCase` must pass an
+  explicit locale.
+- Use `Locale.ROOT` for locale-independent identifiers, protocol values, keys,
+  file names, and normalization.
+- Use `Locale.ENGLISH` only when the transformation is intentionally
+  English-language behavior.
+- Do not use no-argument `String#toLowerCase()` or `String#toUpperCase()` in
+  production code.
+- When formatting numbers that must render with Western digits, pass
+  `Locale.ROOT` or `Locale.ENGLISH` explicitly to APIs such as `String.format`,
+  `Formatter`, `NumberFormat`, and `DecimalFormatSymbols`.
+- Do not rely on the JVM default locale for stable machine-readable output.
 
-## Implementation Workflow
+## Examples
 
-1. Inspect the relevant files and adjacent tests before deciding on an approach.
-2. Identify the smallest behavioral change that satisfies the request.
-3. Follow existing project conventions for names, layout, errors, logging,
-   dependency injection, and test style.
-4. Add or update tests when behavior changes, bugs are fixed, or regressions are
-   plausible.
-5. Run the narrowest useful verification first, then broaden when the blast
-   radius is shared or user-facing.
-6. Summarize what changed, which checks ran, and any residual risk.
-
-## Quality Bar
-
-- Code should be readable without requiring broad context from the author.
-- Functions and modules should have one clear responsibility.
-- Error paths should be intentional and observable where appropriate.
-- Inputs that cross trust boundaries should be validated or normalized.
-- Locale-sensitive operations should pass an explicit locale when output must be
-  stable across user or server regional settings.
-- Security-sensitive data must not be logged, committed, or exposed in errors.
-- New dependencies should be justified by clear value and added through the
-  repository's package manager.
-- Compatibility shims should be reserved for shipped behavior, stable APIs, or
-  persisted data.
+```java
+String key = value.toLowerCase(Locale.ROOT);
+String code = value.toUpperCase(Locale.ROOT);
+String padded = String.format(Locale.ROOT, "%04d", count);
+NumberFormat formatter = NumberFormat.getIntegerInstance(Locale.ROOT);
+DecimalFormat decimal = new DecimalFormat(
+    "0.00", DecimalFormatSymbols.getInstance(Locale.ROOT));
+```
 
 ## References
 
 Load these files when deeper guidance is needed:
 
-- `references/coding-standards.md` for detailed engineering conventions.
-- `references/review-checklist.md` for a pre-delivery and code review checklist.
+- `references/coding-standards.md` for the full Java Locale rule.
+- `references/review-checklist.md` for a focused review checklist.

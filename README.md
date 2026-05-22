@@ -1,8 +1,10 @@
 # Codecheck
 
-Codecheck is a reusable Cursor Agent Skill repository for code standards.
-Install it as a remote skill/rule source to give coding agents consistent
-guidance for implementation, review, testing, and delivery quality.
+Codecheck is a Cursor Agent Skill repository for code standards.
+
+It currently contains only one rule: in Java, string case conversion and
+number formatting that must output Western digits must pass an explicit
+`Locale.ROOT` or `Locale.ENGLISH`.
 
 ## Contents
 
@@ -16,27 +18,16 @@ guidance for implementation, review, testing, and delivery quality.
             `-- review-checklist.md
 ```
 
-## Skill
-
-The `code-standards` skill helps agents:
-
-- read the existing codebase before changing behavior
-- keep changes small, idiomatic, and easy to review
-- write safe, maintainable, and testable code
-- run appropriate verification before delivery
-- review changes against a consistent checklist
-
 ## Usage
 
 In Cursor, add this GitHub repository as a remote project rule/skill source.
 Cursor will discover `.cursor/skills/code-standards/SKILL.md` and make the
-skill available to Agent automatically when code quality guidance is relevant.
+skill available to Agent when the Java Locale rule is relevant.
 
 You can also copy the `code-standards` folder into another repository under
 `.cursor/skills/` or `.agents/skills/`.
 
 ## Maintenance
 
-Keep the skill concise and move detailed guidance into `references/` files so
-agents can load additional context only when needed. Update the checklist when
-team conventions, quality gates, or delivery expectations change.
+Do not add unrelated coding standards until they are explicitly requested.
+Keep this repository focused on approved rules only.
