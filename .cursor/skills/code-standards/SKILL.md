@@ -1,12 +1,12 @@
 ---
 name: code-standards
-description: Enforces the Java Locale rule for string case conversion and Western-digit number formatting. Use when writing or reviewing Java code that calls String.toLowerCase, String.toUpperCase, String.format, Formatter, NumberFormat, or DecimalFormatSymbols.
+description: Enforces approved Java code standards. Use when writing or reviewing Java code that calls String.toLowerCase, String.toUpperCase, String.format, Formatter, NumberFormat, or DecimalFormatSymbols, or when checking Java imports.
 ---
 
 # Code Standards
 
-This skill currently contains only the Java Locale rule requested by the
-repository owner. Do not infer or add unrelated coding standards.
+This skill contains only the Java rules requested by the repository owner. Do
+not infer or add unrelated coding standards.
 
 ## Java Locale Rule
 
@@ -23,6 +23,11 @@ repository owner. Do not infer or add unrelated coding standards.
   `Formatter`, `NumberFormat`, and `DecimalFormatSymbols`.
 - Do not rely on the JVM default locale for stable machine-readable output.
 
+## Java Import Rule
+
+- Do not import Java types that are not used in the file.
+- Remove unused type imports instead of leaving them for future use.
+
 ## Examples
 
 ```java
@@ -38,5 +43,5 @@ DecimalFormat decimal = new DecimalFormat(
 
 Load these files when deeper guidance is needed:
 
-- `references/coding-standards.md` for the full Java Locale rule.
+- `references/coding-standards.md` for the full approved Java rules.
 - `references/review-checklist.md` for a focused review checklist.
