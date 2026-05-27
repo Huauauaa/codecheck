@@ -1,6 +1,6 @@
 # Review Checklist
 
-Only check for the approved Java Locale rule right now.
+Only check for the approved Java rules right now.
 
 - Java string case conversion uses explicit `Locale.ROOT` or `Locale.ENGLISH`.
 - Java code does not use no-argument `String#toLowerCase()` or
@@ -9,3 +9,4 @@ Only check for the approved Java Locale rule right now.
   `Locale.ROOT` or `Locale.ENGLISH`.
 - Java code does not rely on the JVM default locale for stable
   machine-readable output.
+- Java files do not import unused types.

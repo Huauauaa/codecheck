@@ -1,6 +1,6 @@
 # Coding Standards
 
-Only the following rule is approved for this skill right now. Do not add or
+Only the following rules are approved for this skill right now. Do not add or
 enforce unrelated coding standards until they are explicitly requested.
 
 ## Java Locale-Sensitive Operations
@@ -18,6 +18,11 @@ enforce unrelated coding standards until they are explicitly requested.
   `Locale.ROOT` or `Locale.ENGLISH` explicitly to APIs such as `String.format`,
   `Formatter`, `NumberFormat`, and `DecimalFormatSymbols`.
 - Do not rely on the JVM default locale for stable machine-readable output.
+
+## Java Imports
+
+- Do not import Java types that are not used in the file.
+- Remove unused type imports instead of leaving them for future use.
 
 ## Examples
 
